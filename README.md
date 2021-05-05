@@ -1,4 +1,4 @@
-# GNG (Gaming News Aggregator) REDUX
+# GNA (Gaming News Aggregator) REDUX
 Creating a website designed to display recent news from popular gaming sites!
 
 ## Why Am I Making This??
