@@ -1,4 +1,4 @@
-body{
+body {
   font-family: 'ABeeZee', sans-serif;
 }
 
@@ -7,12 +7,12 @@ body{
   text-align: center;
 }
 
-.nugreen{
+.nugreen {
   color: rgb(2, 236, 11);
 }
 
-.box{
-  background-color: antiquewhite;
+.box {
+  background-color: rgb(220, 220, 220);
   width: 80%;
 }
 
@@ -21,4 +21,8 @@ body{
     background-color: rgb(220, 220, 220);
     width: 100%
   }
+}
+
+.articleTitle{
+  color: #1DB704;
 }

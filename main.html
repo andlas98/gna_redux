@@ -28,23 +28,47 @@
   <!--Filter dropdown bar-->
 
   <!--div for gaming information-->
-  <div class="container box">
-    <p>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ut auctor risus, ut viverra erat. Curabitur urna
-      nisl, rutrum ac orci id, condimentum faucibus tortor. Class aptent taciti sociosqu ad litora torquent per conubia
-      nostra, per inceptos himenaeos. Vestibulum vulputate felis ante, ac elementum augue placerat quis. Integer vitae
-      ornare est. Integer turpis sem, finibus laoreet dictum sed, congue vel lacus. Aenean nec mi nisi. Nullam mattis,
-      odio ac dapibus auctor, mi velit vehicula nisi, in eleifend elit ipsum sit amet lectus. Interdum et malesuada
-      fames ac ante ipsum primis in faucibus.
-
-      Praesent a tempus magna. Mauris tellus elit, pharetra et gravida ut, placerat non arcu. In suscipit sodales
-      ullamcorper. Sed blandit, tellus eget accumsan ultrices, est elit ultricies urna, at porta nulla justo in sapien.
-      Sed lobortis tortor fringilla tellus ornare iaculis. Integer faucibus aliquam leo, vel iaculis urna ornare a.
-      Mauris turpis magna, fermentum tristique blandit sit amet, pharetra sit amet eros. In varius odio ac ultricies
-      ultricies. Sed euismod, felis sit amet fringilla elementum, arcu urna ultricies enim, et pharetra dui neque quis
-      magna.
-    </p>
+  <div class="container box" id="GNANewsContainer">
+    
   </div>
 </body>
+
+<script src="https://static.sekandocdn.net/static/feednami/feednami-client-v1.1.js"></script>
+<script>
+  var url = 'https://www.gameinformer.com/rss.xml'
+  const GNANewsContainer = document.getElementById('GNANewsContainer')
+  feednami.load(url)
+    .then(feed => {
+      console.log(feed);
+      for (let i of feed.entries){
+        // adding title
+        var titlenode = document.createElement("a");
+        titlenode.setAttribute("class", "articleTitle");
+        titlenode.setAttribute("href", i.link);
+        titlenode.setAttribute("target", "_blank");
+        var entryTitle = document.createTextNode(i.title);
+        titlenode.appendChild(entryTitle);
+        GNANewsContainer.appendChild(titlenode);
+        
+        // adding source (where the link is from)
+
+        var sourceNode = document.createElement('p');
+        sourceNode.setAttribute("class", "articleSource");
+        var entrySource = document.createTextNode("From: " + i.author);
+        sourceNode.appendChild(entrySource);
+        GNANewsContainer.appendChild(sourceNode);
+        
+        // adding the date the article was posted
+
+        var dateNode = document.createElement('p');
+        dateNode.setAttribute("class", "articleDate");
+        var entryDate = document.createTextNode("Date: " + i.date);
+        dateNode.appendChild(entryDate);
+        GNANewsContainer.appendChild(dateNode);
+
+        GNANewsContainer.appendChild(document.createElement("hr"));
+      }
+    })
+</script>
 
 </html>
