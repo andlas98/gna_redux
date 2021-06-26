@@ -44,6 +44,9 @@
   feednami.load(url)
     .then(feed => {
       console.log(feed);
+      var linkSource = feed.meta.title;
+      // is the article a review, or a miscellaneous article
+      var articleType;
       for (let i of feed.entries){
         // adding title
         var titlenode = document.createElement("a");
@@ -52,15 +55,20 @@
         titlenode.setAttribute("target", "_blank");
         var entryTitle = document.createTextNode(i.title);
         titlenode.appendChild(entryTitle);
-        GNANewsContainer.appendChild(titlenode);
+        if (i.title.search("Review") !== -1){
+          articleType = "Review";
+        }
+        else{
+          articleType = "Misc"
+        }
         
         // adding source (where the link is from)
 
         var sourceNode = document.createElement('p');
         sourceNode.setAttribute("class", "articleSource");
-        var entrySource = document.createTextNode("From: " + i.author);
+        var entrySource = document.createTextNode("From: " + linkSource + " (" + i.author + ")");
         sourceNode.appendChild(entrySource);
-        GNANewsContainer.appendChild(sourceNode);
+        //GNANewsContainer.appendChild(sourceNode);
         
         // adding the date the article was posted
 
@@ -68,8 +76,29 @@
         dateNode.setAttribute("class", "articleDate");
         var entryDate = document.createTextNode("Date: " + i.date);
         dateNode.appendChild(entryDate);
-        GNANewsContainer.appendChild(dateNode);
 
+        // create node to define if article is a review or not
+        var articleTypeNode = document.createElement("p");
+        articleTypeNode.setAttribute("class", "articleType");
+        var articleTypeSymbol = document.createTextNode(articleType);
+        articleTypeNode.appendChild(articleTypeSymbol);
+
+
+        // creating a div that will store the title, source and date nodes
+        var articleDiv = document.createElement("div");
+        if (articleType == "Review"){
+          articleDiv.setAttribute("class", "articleDiv review-article");
+        }
+        else {
+          articleDiv.setAttribute("class", "articleDiv misc-article");
+        }
+        articleDiv.appendChild(titlenode);
+        articleDiv.appendChild(sourceNode);
+        articleDiv.appendChild(dateNode);
+        articleDiv.appendChild(articleTypeNode);
+        GNANewsContainer.appendChild(articleDiv);
+
+        // add horizontal rule to separate div from div
         GNANewsContainer.appendChild(document.createElement("hr"));
       }
     })

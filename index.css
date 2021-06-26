@@ -51,6 +51,8 @@ input:checked + .slider:before {
   transform: translateX(26px);
 }
 
+/* end of slider */
+
 body {
   font-family: 'ABeeZee', sans-serif;
 }
@@ -77,6 +79,31 @@ body {
   }
 }
 
+
+.articleDiv {
+  padding: 1rem;
+  padding-bottom: 0;
+}
+
 .articleTitle{
   color: #1DB704;
+  position: relative;
+}
+
+.articleSource{
+  position: relative;
+  margin-bottom:0;
+}
+
+.articleDate {
+  margin-top: 0.25rem;
+}
+
+.articleType {
+  background-color: #1DB704;
+  color: aliceblue;
+  padding: 0.5rem;
+  width: max-content;
+  font-size: .75rem;
+  border-radius: 10%;
 }
