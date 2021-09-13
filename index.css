@@ -57,6 +57,13 @@ body {
   font-family: 'ABeeZee', sans-serif;
 }
 
+body.light{
+  background-color: white;
+}
+body.dark {
+  background-color: black;
+}
+
 .header {
   font-family: 'Exo', Georgia, 'Times New Roman', Times, serif;
   text-align: center;
@@ -71,6 +78,8 @@ body {
   width: 80%;
   margin: auto;
 }
+
+box.dark {}
 
 @media only screen and (max-width: 700px) {
   .box {
@@ -90,6 +99,10 @@ body {
   position: relative;
 }
 
+.articleTitle.dark{
+  color: #FF0000;
+}
+
 .articleSource{
   position: relative;
   margin-bottom:0;
@@ -107,6 +120,11 @@ body {
   font-size: .75rem;
   border-radius: 10%;
 }
+
+.articleType.dark{
+  background-color: #FF0000;
+}
+
 hr:not(.header-lower-hr):not(.header-upper-hr){
   color: aliceblue;
   width: 90%;

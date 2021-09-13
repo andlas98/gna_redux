@@ -13,7 +13,7 @@
 
 <body>
   <label class="switch" id ="darkSlider">
-    <input type="checkbox">
+    <input type="checkbox" id="displaySlider">
     <span class="slider"></span>
   </label>
   <div class="container">
@@ -83,7 +83,6 @@
         var articleTypeSymbol = document.createTextNode(articleType);
         articleTypeNode.appendChild(articleTypeSymbol);
 
-
         // creating a div that will store the title, source and date nodes
         var articleDiv = document.createElement("div");
         if (articleType == "Review"){
@@ -103,6 +102,55 @@
       }
     })
 
+</script>
+<script>
+  var body = document.getElementsByTagName("body");
+  var articleTitle = document.getElementsByClassName("articleTitle");
+
+  function turnOnDarkMode(){
+    var allLightElements = document.getElementsByClassName("light");
+    body[0].classList.add("dark");
+    body[0].classList.remove("light");
+    for (let i = 0; i < articleTitle.length; ++i){
+      articleTitle[i].classList.add("dark");
+      articleTitle[i].classList.remove("light");
+    }
+    
+
+    for (let i = 0; i < allLightElements.length;++i){
+      allLightElements[i].classList.remove("light");
+      allLightElements[i].classList.add("dark");
+    }
+  }
+
+  function turnOnLightMode(){
+    
+    body[0].classList.add("light");
+    body[0].classList.remove("dark");
+    for (let i = 0; i < articleTitle.length; ++i){
+      articleTitle[i].classList.add("light");
+      articleTitle[i].classList.remove("dark");
+    }
+    var allDarkElements = document.getElementsByClassName("dark");
+    for (let i = 0; i < allDarkElements.length;++i){
+      allDarkElements[i].classList.remove("dark");
+      allDarkElements[i].classList.add("light");
+    }
+  }
+  var slider = document.getElementById("displaySlider");
+  slider.addEventListener('change', function(){
+    // false = light mode, true = dark mode
+    console.log(slider.checked);
+    if (slider.checked){
+      turnOnDarkMode();
+      console.log("dark mode ON")
+    }
+    else{
+      turnOnLightMode();
+      console.log("light mode ON")
+    }
+  })
+  
 </script>
 
 </html>
