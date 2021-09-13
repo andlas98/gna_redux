@@ -24,6 +24,6 @@ Aaron's website: freshfinder.live
 * Filter by newest articles
 
 ## How to Activate the Site Locally
-1. Make sure you have NodeJS and ExpressJS installed
-2. While in the 'main' directory, call the apps.js folder with "node app.js"
-3. A console log will tell you which channel to hop on to...
+1. ~~Make sure you have NodeJS and ExpressJS installed~~ Click this link (https://andlas98.github.io/GNA_Redux/)!
+2. ~~While in the 'main' directory, call the apps.js folder with "node app.js"
+3. ~~A console log will tell you which channel to hop on to...
