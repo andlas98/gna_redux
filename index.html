@@ -11,18 +11,18 @@
   <link href="https://fonts.googleapis.com/css?family=ABeeZee|Exo&display=swap" rel="stylesheet">
 </head>
 
-<body>
+<body class="">
   <label class="switch" id ="darkSlider">
     <input type="checkbox" id="displaySlider">
     <span class="slider"></span>
   </label>
   <div class="container">
-    <hr style="border-top: 2px solid rgb(2, 236, 11);width: 85%" class="header-upper-hr">
+    <hr class="header-upper-hr">
     <b>
-      <h2 class="header"><span style="color: rgb(2, 236, 11)">G</span>aming <span
-          style="color: rgb(2, 236, 11)">N</span>ews <span style="color: rgb(2, 236, 11)">A</span>ggregator</h2>
+      <h2 class="header" id="header"><span class="accented-header-letter">G</span>aming <span
+        class="accented-header-letter">N</span>ews <span class="accented-header-letter">A</span>ggregator</h2>
     </b>
-    <hr style="border-top: 2px solid rgb(2, 236, 11);width: 60%" class="header-lower-hr">
+    <hr class="header-lower-hr">
   </div>
   <p>Filter By:
     <a href="#">Most Recent</a>
@@ -103,20 +103,45 @@
     })
 
 </script>
+<!-- SCRIPT FOR LIGHT AND DARK MODE -->
 <script>
   var body = document.getElementsByTagName("body");
   var articleTitle = document.getElementsByClassName("articleTitle");
+  var box = document.getElementsByClassName("box");
+  var p = document.getElementsByTagName("p");
+  var header = document.getElementById("header");
+  var accentedHeaderLetters = document.getElementsByClassName("accented-header-letter");
+  var headerUpperHR = document.getElementsByClassName("header-upper-hr");
+  var headerLowerHR = document.getElementsByClassName("header-lower-hr");
 
   function turnOnDarkMode(){
     var allLightElements = document.getElementsByClassName("light");
     body[0].classList.add("dark");
     body[0].classList.remove("light");
+    box[0].classList.add("dark");
+    box[0].classList.remove("light");
+    header.classList.add("dark");
+    header.classList.remove("light");
+    headerUpperHR[0].classList.add("dark");
+    headerUpperHR[0].classList.remove("light");
+    headerLowerHR[0].classList.add("dark");
+    headerLowerHR[0].classList.remove("light");
+    
     for (let i = 0; i < articleTitle.length; ++i){
       articleTitle[i].classList.add("dark");
       articleTitle[i].classList.remove("light");
     }
-    
 
+    for (let i = 0; i < p.length; ++i){
+      p[i].classList.add("dark");
+      p[i].classList.remove("light");
+    }
+
+    for (let i = 0; i < accentedHeaderLetters.length; ++i){
+      accentedHeaderLetters[i].classList.add("dark");
+      accentedHeaderLetters[i].classList.remove("light");
+    }
+    
     for (let i = 0; i < allLightElements.length;++i){
       allLightElements[i].classList.remove("light");
       allLightElements[i].classList.add("dark");
@@ -127,16 +152,37 @@
     
     body[0].classList.add("light");
     body[0].classList.remove("dark");
+    box[0].classList.add("light");
+    box[0].classList.remove("dark");
+    header.classList.add("light");
+    header.classList.remove("dark");
+    headerUpperHR[0].classList.add("light");
+    headerUpperHR[0].classList.remove("dark");
+    headerLowerHR[0].classList.add("light");
+    headerLowerHR[0].classList.remove("dark");
+
     for (let i = 0; i < articleTitle.length; ++i){
       articleTitle[i].classList.add("light");
       articleTitle[i].classList.remove("dark");
     }
+
+    for (let i = 0; i < p.length; ++i){
+      p[i].classList.add("light");
+      p[i].classList.remove("dark");
+    }
+
+    for (let i = 0; i < accentedHeaderLetters.length; ++i){
+      accentedHeaderLetters[i].classList.add("light");
+      accentedHeaderLetters[i].classList.remove("dark");
+    }
+
     var allDarkElements = document.getElementsByClassName("dark");
     for (let i = 0; i < allDarkElements.length;++i){
       allDarkElements[i].classList.remove("dark");
       allDarkElements[i].classList.add("light");
     }
   }
+
   var slider = document.getElementById("displaySlider");
   slider.addEventListener('change', function(){
     // false = light mode, true = dark mode

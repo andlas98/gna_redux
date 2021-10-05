@@ -63,23 +63,62 @@ body.light{
 body.dark {
   background-color: black;
 }
+p.dark{
+  color: white;
+}
 
 .header {
   font-family: 'Exo', Georgia, 'Times New Roman', Times, serif;
   text-align: center;
 }
 
+.header.dark {
+  color: white;
+}
+
+.accented-header-letter {
+  color: rgb(2, 236, 11);
+}
+.accented-header-letter.dark{
+  color: #FF0000;
+}
+
 .nugreen {
   color: rgb(2, 236, 11);
 }
 
+.header-upper-hr{
+  border-top: 2px solid rgb(2, 236, 11);
+  width: 85%;
+}
+
+.header-lower-hr{
+  border-top: 2px solid rgb(2, 236, 11);
+  width: 60%;
+}
+
+.header-upper-hr.dark{
+  border-top: 2px solid #FF0000;
+  border-bottom: 2px solid black;
+}
+
+.header-lower-hr.dark{
+  border-top: 2px solid #FF0000;
+  border-bottom: 2px solid black;
+}
+
 .box {
   background-color: rgb(220, 220, 220);
+  border: 1px solid rgb(220, 220, 220);
   width: 80%;
   margin: auto;
 }
 
-box.dark {}
+.box.dark {
+  background-color: #202020;
+  transition: background-color 0.25s;
+  border: 1px solid #FF0000;
+}
 
 @media only screen and (max-width: 700px) {
   .box {
@@ -100,7 +139,7 @@ box.dark {}
 }
 
 .articleTitle.dark{
-  color: #FF0000;
+  color: #FF9292;
 }
 
 .articleSource{
