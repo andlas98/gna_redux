@@ -171,3 +171,7 @@ hr:not(.header-lower-hr):not(.header-upper-hr){
   margin-left: 1rem;
   margin-right: auto;
 }
+
+#GNANewsContainer{
+  margin-top: 3rem;
+}
