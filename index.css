@@ -1,3 +1,6 @@
+:root{
+  --light-green: rgb(2, 236, 11);
+}
 .switch {
   position: relative;
   display: inline-block;
@@ -87,13 +90,34 @@ p.dark{
   color: rgb(2, 236, 11);
 }
 
+.filter-dropdown-box {
+  width: 50vw;
+  position: absolute;
+  background: white;
+  box-shadow: 0 1px 3px rgba(0,0,0,.12),0 1px 2px rgba(0,0,0,.24);
+  display: none;
+}
+
+.filter-dropdown-box.is-open{
+  display: block;
+}
+
+.article-source-box{
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.filter-dropdown-btn{
+  background: var(--light-green) !important;
+}
+
 .header-upper-hr{
-  border-top: 2px solid rgb(2, 236, 11);
+  border-top: 2px solid var(--light-green);
   width: 85%;
 }
 
 .header-lower-hr{
-  border-top: 2px solid rgb(2, 236, 11);
+  border-top: 2px solid var(--light-green);
   width: 60%;
 }
 

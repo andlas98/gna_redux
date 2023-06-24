@@ -9,6 +9,9 @@
   <link rel="stylesheet" type="text/css" href="index.css">
   <!--Fonts-->
   <link href="https://fonts.googleapis.com/css?family=ABeeZee|Exo&display=swap" rel="stylesheet">
+  <link href="//cdn.muicss.com/mui-0.10.3/css/mui.min.css" rel="stylesheet" type="text/css" />
+  <script src="//cdn.muicss.com/mui-0.10.3/js/mui.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
 </head>
 
 <body class="">
@@ -24,22 +27,70 @@
     </b>
     <hr class="header-lower-hr">
   </div>
-  <!-- <p>Filter By:
-    <a href="#">Most Recent</a>
-    <a href="#">Reviews</a>
-    <a href="#"> Reveals, Announcements</a>
-  </p> -->
   <!--Filter dropdown bar-->
+  <!-- <div class="mui-dropdown">
+    <button class="mui-btn filter-dropdown-btn">
+      Filter
+    </button>
+    <div class="filter-dropdown-box">
+      <p>Article Sources</p>
+      <div class="article-source-box">
+        <div><input value="Game Informer" type="checkbox" onclick="toggleCheck(this)"><span>Game Informer</span></div>
+        <div><input type="checkbox"><span>Giant Bomb</span></li></div>
+      </div>
+      <button>Submit</button>
+    </div>
+  </div> -->
 
   <!--div for gaming information-->
   <div class="container box" id="GNANewsContainer">
     
   </div>
 </body>
-
+<!-- Script for Feednami -->
 <script src="https://static.sekandocdn.net/static/feednami/feednami-client-v1.1.js"></script>
+
 <script>
-  var url = 'https://www.gameinformer.com/rss.xml'
+  // Start of attempt to redo how feeds are read+displayed
+  function toggleCheck(elem){
+    console.log(elem.value);
+  }
+  var url = 'https://www.gameinformer.com/rss.xml';
+  const urls = ['https://www.gameinformer.com/rss.xml', 'https://www.giantbomb.com/feeds/news'];
+  var allFeeds = [];
+  function toggleFilterDropdown(){
+    if($('.filter-dropdown-box').hasClass("is-open")){
+      $('.filter-dropdown-box').removeClass("is-open");
+    }
+    else{
+      $('.filter-dropdown-box').addClass("is-open");
+    }
+  }
+
+  $(".filter-dropdown-btn").on("click", function(){
+    toggleFilterDropdown();
+  })
+  
+  async function getFeed(url){
+    try {
+      await feednami.load(url).then((feed)=>{
+        allFeeds.push(feed);
+      });
+    } catch (error) {
+      console.log("ERROR", error);
+    }
+  }
+
+  function populateFeedBox(){
+    urls.forEach(url => {
+      getFeed(url);
+    })
+    // console.log(allFeeds);
+  }
+
+  populateFeedBox();
+  // end of attempt
+
   const GNANewsContainer = document.getElementById('GNANewsContainer')
   feednami.load(url)
     .then(feed => {
