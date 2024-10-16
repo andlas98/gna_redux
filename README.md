@@ -1,5 +1,7 @@
 # GNA (Gaming News Aggregator) REDUX
-Created a website designed to display recent news from popular gaming sites! Check out its most current deployed status [here](https://andlas98.github.io/GNA_Redux/)!
+This website display recent news from popular gaming sites! Check out its most current deployed status [here](https://andlas98.github.io/GNA_Redux/)!
+
+[Link to mockups](https://www.figma.com/design/YQNLAaBXL2TVBSuslj85KhiX/Gaming-News-Aggregator-Splash?m=auto&t=PsFrX8bVxZ1fNtoT-1)
 
 ## Purpose and Inspiration
 ... Every other day I peruse through several gaming websites such as Destructoid, Siliconera, and Polygon. Kinda miffed with how many sites I had to open at once, I wondered to myself, "Why not just roll all these sites that you love into one?" And the dream was born...
@@ -15,4 +17,5 @@ Aaron's website: freshfinder.live
 * Provide links to various articles related to gaming (a la HackerNews), but personally curated (thus, not a forum)
 * Grab articles from multiple popular VG sites (Destructoid, Rock Paper Shotgun, Game Informer) and lesser knowns (Siliconera, Eurogamer)
 * Should load content from the past week (to keep things minimalistic)
-* Filter for different types of articles (reviews, interviews, miscellaneous, reveals/announcements/debuts)
+
+[link to mockups](https://www.figma.com/design/YQNLAaBXL2TVBSuslj85KhiX/Gaming-News-Aggregator-Splash?m=auto&t=PsFrX8bVxZ1fNtoT-1)
