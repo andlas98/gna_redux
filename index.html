@@ -57,7 +57,7 @@
     console.log(elem.value);
   }
   var url = 'https://www.polygon.com/rss/index.xml';
-  const urls = ['https://www.gameinformer.com/rss.xml', 'https://www.giantbomb.com/feeds/news'];
+  const urls = ['https://www.polygon.com/rss/index.xml', 'https://www.gamedeveloper.com/rss.xml'];
   var allFeeds = [];
   function toggleFilterDropdown(){
     if($('.filter-dropdown-box').hasClass("is-open")){
@@ -86,7 +86,7 @@
     urls.forEach(url => {
       getFeed(url);
     })
-    // console.log(allFeeds);
+    console.log(allFeeds);
   }
 
   populateFeedBox();
