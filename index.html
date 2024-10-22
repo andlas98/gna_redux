@@ -27,21 +27,6 @@
     </b>
     <hr class="header-lower-hr">
   </div>
-  
-  <!--Filter dropdown bar-->
-  <!-- <div class="mui-dropdown">
-    <button class="mui-btn filter-dropdown-btn">
-      Filter
-    </button>
-    <div class="filter-dropdown-box">
-      <p>Article Sources</p>
-      <div class="article-source-box">
-        <div><input value="Game Informer" type="checkbox" onclick="toggleCheck(this)"><span>Game Informer</span></div>
-        <div><input type="checkbox"><span>Giant Bomb</span></li></div>
-      </div>
-      <button>Submit</button>
-    </div>
-  </div> -->
 
   <!--div for gaming information-->
   <div class="container box" id="GNANewsContainer">
@@ -59,18 +44,6 @@
   var url = 'https://www.polygon.com/rss/index.xml';
   const urls = ['https://www.polygon.com/rss/index.xml', 'https://www.gamedeveloper.com/rss.xml'];
   var allFeeds = [];
-  function toggleFilterDropdown(){
-    if($('.filter-dropdown-box').hasClass("is-open")){
-      $('.filter-dropdown-box').removeClass("is-open");
-    }
-    else{
-      $('.filter-dropdown-box').addClass("is-open");
-    }
-  }
-
-  $(".filter-dropdown-btn").on("click", function(){
-    toggleFilterDropdown();
-  })
   
   async function getFeed(url){
     try {
@@ -120,7 +93,6 @@
         sourceNode.setAttribute("class", "articleSource");
         var entrySource = document.createTextNode("From: " + linkSource + " (" + i.author + ")");
         sourceNode.appendChild(entrySource);
-        //GNANewsContainer.appendChild(sourceNode);
         
         // adding the date the article was posted
 
