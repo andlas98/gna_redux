@@ -1,46 +1,23 @@
-# Getting Started with Create React App
+# GNA (Gaming News Aggregator) REDUX
+This website display recent news from popular gaming sites! Check out its most current deployed status [here](https://andlas98.github.io/GNA_Redux/)!
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+[Link to mockups](https://www.figma.com/design/YQNLAaBXL2TVBSuslj85KhiX/Gaming-News-Aggregator-Splash?m=auto&t=PsFrX8bVxZ1fNtoT-1)
 
-## Available Scripts
+## Purpose and Inspiration
+Occasionally I peruse through several gaming websites such as Destructoid, Siliconera, and Polygon. Kinda miffed with how many sites I had to open at once, I developed this site back in 2021 to roll all the updates from those sites into one. 
 
-In the project directory, you can run:
+My inspiration for this site also came from a college friend of mine who was creating a similar aggregator for 100 Days of Code using a subbredit called r/hiphopheads for content. Shoutouts to you, Aaron!
 
-### `npm start`
+Aaron's post: https://www.linkedin.com/posts/activity-6547520966463901696-s3-D
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Aaron's website: freshfinder.live
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+UPDATE: I've since revisited this project to recreate it in React and TypeScript.
 
-### `npm test`
+**Basic Functions**
+* Languages/Libraries Used: React, Typescript, Tailwind, Feednami
+* Provide links to various articles related to gaming (a la HackerNews), but personally curated (thus, not a forum)
+* Grab articles from multiple popular VG sites (Destructoid, Rock Paper Shotgun, Game Informer) and lesser knowns (Siliconera, Eurogamer)
+* Should load content from the past week (to keep things minimalistic)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+[link to mockups](https://www.figma.com/design/YQNLAaBXL2TVBSuslj85KhiX/Gaming-News-Aggregator-Splash?m=auto&t=PsFrX8bVxZ1fNtoT-1)
