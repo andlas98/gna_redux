@@ -16,7 +16,8 @@ function App() {
       </b>
       <hr className="header-lower-hr"></hr>
     </div>
-      <PostCard className="card" content={<>Hello</>} />
+    articlePublishDate: string,
+      <PostCard className="card" articleHeaderImg="https://cdn2.freedom.to/assets/logos/internal-topnav-logo-premium-15264d00a08c72db065312502000aa7c56f12daf0399f41169230001d8892c39.png" articleHeadline="" articleLink="" articleAuthor="" articleSource="" articlePublishDate="" articleTags={["hello", "it\'s me"]}/>
     </div>
   );
 }
