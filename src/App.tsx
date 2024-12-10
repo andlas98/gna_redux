@@ -1,8 +1,11 @@
 import React from 'react';
+
 import logo from './logo.svg';
 import './App.css';
 import { PostCard } from './components/postCard';
 import { ModeSwitch } from './components/switch';
+import { fetchFeed } from './lib';
+import { useEffect } from 'react';
 
 function App() {
   // async function getFeed(url:any){
@@ -14,6 +17,10 @@ function App() {
   //     console.log("ERROR", error);
   //   }
   // }
+  useEffect(()=>{
+    fetchFeed();
+  },[])
+  
   return (
     <div className="App h-full">
       <ModeSwitch />
