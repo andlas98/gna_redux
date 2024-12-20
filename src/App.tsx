@@ -2,24 +2,21 @@ import React from 'react';
 
 import logo from './logo.svg';
 import './App.css';
-import { PostCard } from './components/postCard';
-import { ModeSwitch } from './components/switch';
+import { PostCard } from './ui/postCard';
+import { ModeSwitch } from './ui/switch';
 import { fetchFeed } from './lib';
 import { useEffect } from 'react';
+import feeds from './feeds';
+import { allFeedEntries } from './lib';
 
 function App() {
-  // async function getFeed(url:any){
-  //   try {
-  //     await feednami.load(url).then((feed)=>{
-  //       allFeeds.push(feed);
-  //     });
-  //   } catch (error) {
-  //     console.log("ERROR", error);
-  //   }
-  // }
-  useEffect(()=>{
-    fetchFeed();
-  },[])
+  useEffect(() => {
+    Object.entries(feeds).forEach(feed => {
+      fetchFeed(feed[0], feed[1]);
+    });
+    console.log("AllFeedEntries:", allFeedEntries);
+    // debugger;
+  }, [])
   
   return (
     <div className="App h-full">

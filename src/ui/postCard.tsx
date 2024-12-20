@@ -2,13 +2,13 @@ import React from "react";
 import { GamepadOutlined } from "@mui/icons-material";
 interface myComponentProps {
     className: string,
-    articleHeaderImg: string | undefined,
-    articleHeadline: string,
-    articleLink: string,
-    articleAuthor: string,
-    articleSource: string,
-    articlePublishDate: string,
-    articleTags: Array<string>,
+    articleHeaderImg: string | undefined, // header image for the article (optional)
+    articleHeadline: string, // headline of the article
+    articleLink: string, // link to the article
+    articleAuthor: string, // author of the article
+    articleSource: string, // Polygon, Destructroid, etc.
+    articlePublishDate: string // date day was published,
+    articleTags: Array<string>, // tags for the article (optional)
 }
 
 export const PostCard:React.FC<myComponentProps> = (props) => {
