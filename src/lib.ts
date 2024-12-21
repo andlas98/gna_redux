@@ -1,60 +1,79 @@
-import feeds from "./feeds";
-
 var parseString = require('xml2js').parseString;
+// var feeds = require('./feeds');
 
 export var allFeedEntries : Array <{[key: string]: any}> = [];
 
 const PROXY_URL = 'https://cors.eu.org/';
 
-function removeObjectKeys(obj: { [key: string]: any }, keysToRemove: string[]): { [key: string]: any } {
-  keysToRemove.forEach(key => {
-    if (obj.hasOwnProperty(key)) {
-      delete obj[key];
-    }
+function moveSiliconeraEntriesToAllFeedEntries(entries: any) {
+  entries.forEach((entry: any) => {
+    const formattedEntry = {
+      articleHeaderImg: "",
+      articleHeadline: entry.title[0],
+      articleLink: entry.link[0],
+      articleAuthor: entry["dc:creator"][0],
+      articleSource: "Siliconera",
+      articlePublishDate: entry.pubDate[0],
+      articleTags: entry.category,
+    };
+    allFeedEntries.push(formattedEntry);
   });
-  return obj;
+  debugger;
 }
 
-export const fetchFeed =( RSS_SOURCE: String, RSS_URL: String )=>{
-  fetch(`${PROXY_URL}${RSS_URL}`)
-    .then((response) => response.text()
-      .then((data) => parseString(data, (err: any, res:any) => {
-        var formattedEntry = {
-          articleHeaderImg: "",
-          articleHeadline: "",
-          articleLink: "",
-          articleAuthor: "", 
-          articleSource: "",
-          articlePublishDate: "",
-          articleTags: "",
+function movePolygonEntriesToAllFeedEntries(entries: any) {
+  entries.forEach((entry: any) => {
+    const formattedEntry = {
+      articleHeaderImg: "",
+      articleHeadline: entry.title[0]._,
+      articleLink: entry.link[0].$.href,
+      articleAuthor: entry.author[0].name[0],
+      articleSource: "Polygon",
+      articlePublishDate: entry.published[0],
+      // TODO: Get the tags from the entry correctly
+      articleTags: [entry.category.forEach((categoryObj: any) =>{
+        const term = categoryObj.$.term;
+        return term;
+      })],
+    };
+    allFeedEntries.push(formattedEntry);
+  });
+  debugger;
+}
+
+export const fetchFeed = async (feeds: { [key: string]: string }) => {
+  allFeedEntries.length = 0; // Clear previous entries
+
+  const fetchPromises = Object.entries(feeds).map(async ([key, url]) => {
+    try {
+      const response = await fetch(`${PROXY_URL}${url}`);
+      const data = await response.text();
+      parseString(data, (err: any, res: any) => {
+        if (err) {
+          console.warn("Parsing error:", err);
+          return;
         }
-        
-        if (RSS_SOURCE === "Siliconera") {
+        if (key === "Siliconera") {
           const siliconeraEntries = res.rss.channel[0].item;
-          console.log("Siliconera Entries:", siliconeraEntries);
-          Object.entries(siliconeraEntries).forEach((entry:Array<any>) => {
-            formattedEntry.articleHeadline = entry[1].title[0];
-            formattedEntry.articleHeaderImg = "";
-            formattedEntry.articleLink = entry[1].link[0];
-            formattedEntry.articleAuthor = entry[1]["dc:creator"][0];
-            formattedEntry.articleSource = "Siliconera";
-            formattedEntry.articlePublishDate = entry[1].pubDate[0];
-            formattedEntry.articleTags = entry[1].category;
-            allFeedEntries.push(formattedEntry);
-          })
+          moveSiliconeraEntriesToAllFeedEntries(siliconeraEntries);
         }
-        if (RSS_SOURCE === "Polygon"){
-          const entries = res.feed.entry;
-          console.log("Polygon Entries:", entries);
+        if (key === "Polygon") {
+          const polygonEntries = res.feed.entry;
+          movePolygonEntriesToAllFeedEntries(polygonEntries);
         }
-        console.info("data:", res);
-        console.warn("err:", err);
-      })
-  )
-  .catch((error) => console.warn("response error", error))
-  .finally(()=>
-    {
-      console.info("response complete")
-      // return {key, }
-    }));
+      });
+    } catch (error) {
+      console.warn("Fetch error:", error);
+    }
+  });
+
+  await Promise.all(fetchPromises);
+  return allFeedEntries;
+};
+
+export function sortFeedEntriesByNewestToOldest (allFeedEntries: Array<{[key: string]: any}>){
+  allFeedEntries.sort((a, b) => {
+    return new Date(b.articlePublishDate).getTime() - new Date(a.articlePublishDate).getTime();
+  });
+  return allFeedEntries;
 }
