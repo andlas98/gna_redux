@@ -19,12 +19,12 @@ const App = () => {
   }, [feeds]);
 
   return (
-    <div className="App h-full dark:bg-black dark:text-white mb-[3rem]">
+    <div className="App h-full bg-black text-white pb-[3rem]">
       <ModeSwitch />
-      <div className="container m-auto mb-[3rem]">
+      <div className="container m-auto">
         <SiteHeader />
         {/* Render PostCards here using sortedFeedEntries */}
-        <div className='feed-entries-container mt-[2rem] dark:border-dark-mode-red border-[1px] border-[solid] shadow-md divide-y divide-white divide-dashed'>
+        <div className='feed-entries-container mt-[2rem] border-dark-mode-red border-[1px] border-[solid] shadow-md divide-y divide-white divide-dashed animate-ping-once'>
           {sortedFeedEntries.map((entry, index) => (
             <PostCard 
               key={index} 
@@ -38,7 +38,7 @@ const App = () => {
               articleTags={entry.articleTags}
               entry={entry} 
             />
-          ))}
+          )) || <p>Loading...</p>}
         </div>
       </div>
     </div>
