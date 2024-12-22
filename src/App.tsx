@@ -23,6 +23,18 @@ const App = () => {
       <ModeSwitch />
       <div className="container m-auto">
         <SiteHeader />
+        <div className='flex m-auto items-center max-md:flex-col'>Showing articles from...
+          <div className="checkbox-container mt-4">
+            <label>
+              <input type="checkbox" checked className='checkbox-siliconera' />
+              Siliconera
+            </label>
+            <label>
+              <input checked type="checkbox" className='checkbox-polygon' />
+              Polygon
+            </label>
+          </div>
+        </div>
         {/* Render PostCards here using sortedFeedEntries */}
         <div className='feed-entries-container mt-[2rem] border-dark-mode-red border-[1px] border-[solid] shadow-md divide-y divide-white divide-dashed animate-ping-once'>
           {sortedFeedEntries.map((entry, index) => (
