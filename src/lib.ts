@@ -23,6 +23,11 @@ function moveSiliconeraEntriesToAllFeedEntries(entries: any) {
 
 function movePolygonEntriesToAllFeedEntries(entries: any) {
   entries.forEach((entry: any) => {
+    const articleTagsTemp: string[] = [];
+    entry.category.map((categoryObj: any) =>{
+      const term = categoryObj.$.term;
+      articleTagsTemp.push(term + " ");
+    })
     const formattedEntry = {
       articleHeaderImg: "",
       articleHeadline: entry.title[0]._,
@@ -30,15 +35,10 @@ function movePolygonEntriesToAllFeedEntries(entries: any) {
       articleAuthor: entry.author[0].name[0],
       articleSource: "Polygon",
       articlePublishDate: entry.published[0],
-      // TODO: Get the tags from the entry correctly
-      articleTags: [entry.category.forEach((categoryObj: any) =>{
-        const term = categoryObj.$.term;
-        return term;
-      })],
+      articleTags: articleTagsTemp,
     };
     allFeedEntries.push(formattedEntry);
   });
-  // debugger;
 }
 
 export const fetchFeed = async (feeds: { [key: string]: string }) => {
