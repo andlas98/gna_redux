@@ -18,7 +18,7 @@ function moveSiliconeraEntriesToAllFeedEntries(entries: any) {
     };
     allFeedEntries.push(formattedEntry);
   });
-  debugger;
+  // debugger;
 }
 
 function movePolygonEntriesToAllFeedEntries(entries: any) {
@@ -38,7 +38,7 @@ function movePolygonEntriesToAllFeedEntries(entries: any) {
     };
     allFeedEntries.push(formattedEntry);
   });
-  debugger;
+  // debugger;
 }
 
 export const fetchFeed = async (feeds: { [key: string]: string }) => {
