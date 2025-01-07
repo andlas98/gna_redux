@@ -7,7 +7,9 @@ import SiteHeader from './ui/siteHeader';
 
 const App = () => {
   const [sortedFeedEntries, setSortedFeedEntries] = useState<{ [key: string]: any }[]>([]);
+  const [ excludedSources, setExcludedSources ] = useState<string[]>([]);
 
+  // TODO HIDE EXCLUDED SOURCES
   useEffect(() => {
     const fetchData = async () => {
       const data = await fetchFeed(feeds);
@@ -23,16 +25,14 @@ const App = () => {
       <ModeSwitch />
       <div className="container m-auto">
         <SiteHeader />
-        <div className='flex m-auto items-center max-md:flex-col'>Showing articles from...
+        <div className='flex m-auto items-center max-md:flex-col'> Showing articles from...
           <div className="checkbox-container mt-4">
-            <label>
-              <input type="checkbox" checked className='checkbox-siliconera' />
-              Siliconera
-            </label>
-            <label>
-              <input checked type="checkbox" className='checkbox-polygon' />
-              Polygon
-            </label>
+            {Object.keys(feeds).map((entry, index) => (
+              <label>
+                <input type="checkbox" key={index} defaultChecked onClick={() => console.log(`${entry} button clicked`)} value={entry} className={`checkbox-${entry}`} />
+                {entry}
+              </label>
+            ))}
           </div>
         </div>
         {/* Render PostCards here using sortedFeedEntries */}

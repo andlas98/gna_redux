@@ -3,7 +3,7 @@ var parseString = require('xml2js').parseString;
 
 export var allFeedEntries : Array <{[key: string]: any}> = [];
 
-const PROXY_URL = 'https://cors.eu.org/';
+const PROXY_URL = 'https://api.cors.lol/?url=';
 
 function moveSiliconeraEntriesToAllFeedEntries(entries: any) {
   entries.forEach((entry: any) => {
@@ -41,6 +41,9 @@ function movePolygonEntriesToAllFeedEntries(entries: any) {
   });
 }
 
+// TODO: REDDIT FIELD PARSING
+
+
 export const fetchFeed = async (feeds: { [key: string]: string }) => {
   allFeedEntries.length = 0; // Clear previous entries
 
@@ -60,6 +63,10 @@ export const fetchFeed = async (feeds: { [key: string]: string }) => {
         if (key === "Polygon") {
           const polygonEntries = res.feed.entry;
           movePolygonEntriesToAllFeedEntries(polygonEntries);
+        }
+
+        if (key === "C-OSSU (Reddit)") {
+          console.info(res);
         }
       });
     } catch (error) {
