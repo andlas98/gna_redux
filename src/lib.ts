@@ -42,8 +42,6 @@ function movePolygonEntriesToAllFeedEntries(entries: any) {
   });
 }
 
-// TODO: REDDIT FIELD PARSING
-
 function moveRedditEntriesToAllFeedEntries(entries: any) {
   console.log(entries)
   
