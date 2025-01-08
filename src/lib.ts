@@ -44,6 +44,24 @@ function movePolygonEntriesToAllFeedEntries(entries: any) {
 
 // TODO: REDDIT FIELD PARSING
 
+function moveRedditEntriesToAllFeedEntries(entries: any) {
+  console.log(entries)
+  
+  entries.forEach((entry: any) => { 
+    if (entry.title[0]?.includes("/u/C-OSSU on")) return;
+    const formattedEntry = {
+      articleHeaderImg: entry["media:thumbnail"][0].$.url || "",
+      articleHeadline: entry.title[0],
+      articleLink: entry.link[0].$.href,
+      articleAuthor: entry.author[0].name[0],
+      articleSource: "Reddit",
+      articlePublishDate: entry.published[0],
+      articleTags: "",
+    };
+    allFeedEntries.push(formattedEntry);
+  });
+}
+
 
 export const fetchFeed = async (feeds: { [key: string]: string }) => {
   allFeedEntries.length = 0; // Clear previous entries
@@ -66,7 +84,7 @@ export const fetchFeed = async (feeds: { [key: string]: string }) => {
           movePolygonEntriesToAllFeedEntries(polygonEntries);
         }
 
-        if (key === "C-OSSU (Reddit)") console.info(res);
+        if (key === "C-OSSU (Reddit)") moveRedditEntriesToAllFeedEntries(res.feed.entry);
         
         return res;
       });
