@@ -7,7 +7,7 @@ import SiteHeader from './ui/siteHeader';
 
 const App = () => {
   const [ sortedFeedEntries, setSortedFeedEntries ] = useState<{ [key: string]: any }[]>([]);
-  const [ excludedSources, setExcludedSources ] = useState<string[]>([]);
+  // const [ excludedSources, setExcludedSources ] = useState<string[]>([]);
 
   // TODO HIDE EXCLUDED SOURCES
   useEffect(() => {
@@ -18,7 +18,7 @@ const App = () => {
     };
 
     fetchData();
-  }, [feeds]);
+  }, []);
 
   return (
     <div className="App h-full bg-black text-white pb-[3rem]">

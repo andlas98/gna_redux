@@ -25,8 +25,9 @@ function movePolygonEntriesToAllFeedEntries(entries: any) {
   entries.forEach((entry: any) => {
     const articleTagsTemp: string[] = [];
     entry.category.map((categoryObj: any) =>{
-      const term = categoryObj.$.term;
-      articleTagsTemp.push(term + " ");
+      const entryTerm = categoryObj.$.term + " ";
+      articleTagsTemp.push(entryTerm);
+      return articleTagsTemp
     })
     const formattedEntry = {
       articleHeaderImg: "",
@@ -65,13 +66,15 @@ export const fetchFeed = async (feeds: { [key: string]: string }) => {
           movePolygonEntriesToAllFeedEntries(polygonEntries);
         }
 
-        if (key === "C-OSSU (Reddit)") {
-          console.info(res);
-        }
+        if (key === "C-OSSU (Reddit)") console.info(res);
+        
+        return res;
       });
     } catch (error) {
       console.warn("Fetch error:", error);
+      return error;
     }
+    // return 1;
   });
 
   await Promise.all(fetchPromises);
