@@ -6,7 +6,7 @@ import feeds from './feeds';
 import SiteHeader from './ui/siteHeader';
 
 const App = () => {
-  const [sortedFeedEntries, setSortedFeedEntries] = useState<{ [key: string]: any }[]>([]);
+  const [ sortedFeedEntries, setSortedFeedEntries ] = useState<{ [key: string]: any }[]>([]);
   const [ excludedSources, setExcludedSources ] = useState<string[]>([]);
 
   // TODO HIDE EXCLUDED SOURCES
