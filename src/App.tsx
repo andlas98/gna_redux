@@ -7,7 +7,7 @@ import SiteHeader from './ui/siteHeader';
 
 const App = () => {
   const [ sortedFeedEntries, setSortedFeedEntries ] = useState<{ [key: string]: any }[]>([]);
-  // const [ excludedSources, setExcludedSources ] = useState<string[]>([]);
+  const [ excludedArticleSources, setExcludedArticleSources ] = useState<string[]>([]);
 
   // TODO HIDE EXCLUDED SOURCES
   useEffect(() => {
@@ -16,9 +16,17 @@ const App = () => {
       const sortedData = sortFeedEntriesByNewestToOldest([...data]);
       setSortedFeedEntries(sortedData);
     };
-
     fetchData();
-  }, []);
+  }, [excludedArticleSources]);
+
+  const handleArticleFilter = (articleSource: string, checked: boolean) => {
+    const conditionToRemoveArticlesOfSpecificSource = !checked && (!excludedArticleSources.includes(articleSource))
+    const conditionToAddArticlesOfSpecificSource = checked && (excludedArticleSources.includes(articleSource))
+    
+    if (conditionToRemoveArticlesOfSpecificSource) setExcludedArticleSources([...excludedArticleSources, articleSource]);
+    if (conditionToAddArticlesOfSpecificSource) setExcludedArticleSources(excludedArticleSources.filter(source => source !== articleSource)); 
+    return;
+  };
 
   return (
     <div className="App h-full bg-black text-white pb-[3rem]">
@@ -29,7 +37,7 @@ const App = () => {
           <div className="checkbox-container mt-4">
             {Object.keys(feeds).map((entry, index) => (
               <label>
-                <input type="checkbox" key={index} defaultChecked onClick={() => console.log(`${entry} button clicked`)} value={entry} className={`checkbox-${entry}`} />
+                <input type="checkbox" key={index} defaultChecked onClick={(e) => handleArticleFilter(entry, (e.target as HTMLInputElement).checked)} className={`checkbox-${entry}`} />
                 {entry}
               </label>
             ))}
@@ -38,6 +46,7 @@ const App = () => {
         {/* Render PostCards here using sortedFeedEntries */}
         <div className='feed-entries-container mt-[2rem] border-dark-mode-red border-[1px] border-[solid] shadow-md divide-y divide-white divide-dashed animate-ping-once'>
           {sortedFeedEntries.map((entry, index) => (
+            entry.articleSource && !excludedArticleSources.includes(entry.articleSource) &&
             <PostCard 
               key={index} 
               className={entry.className}

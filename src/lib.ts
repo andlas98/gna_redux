@@ -51,8 +51,8 @@ function moveRedditEntriesToAllFeedEntries(entries: any) {
       articleHeaderImg: entry["media:thumbnail"][0].$.url || "",
       articleHeadline: entry.title[0],
       articleLink: entry.link[0].$.href,
-      articleAuthor: entry.author[0].name[0],
-      articleSource: "Reddit",
+      articleAuthor: "See post for details",
+      articleSource: "C-OSSU (Reddit)",
       articlePublishDate: entry.published[0],
       articleTags: "",
     };
