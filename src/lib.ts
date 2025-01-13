@@ -5,6 +5,8 @@ export var allFeedEntries : Array <{[key: string]: any}> = [];
 
 const PROXY_URL = 'https://api.cors.lol/?url=';
 
+  // TODO format article preview to display as formatted code 
+
 function moveSiliconeraEntriesToAllFeedEntries(entries: any) {
   entries.forEach((entry: any) => {
     const formattedEntry = {
@@ -15,6 +17,7 @@ function moveSiliconeraEntriesToAllFeedEntries(entries: any) {
       articleSource: "Siliconera",
       articlePublishDate: entry.pubDate[0],
       articleTags: entry.category,
+      articlePreview: entry.description[0],
     };
     allFeedEntries.push(formattedEntry);
   });
@@ -37,14 +40,13 @@ function movePolygonEntriesToAllFeedEntries(entries: any) {
       articleSource: "Polygon",
       articlePublishDate: entry.published[0],
       articleTags: articleTagsTemp,
+      articlePreview: entry.content[0]._,
     };
     allFeedEntries.push(formattedEntry);
   });
 }
 
 function moveRedditEntriesToAllFeedEntries(entries: any) {
-  console.log(entries)
-  
   entries.forEach((entry: any) => { 
     if (entry.title[0]?.includes("/u/C-OSSU on")) return;
     const formattedEntry = {
@@ -55,6 +57,7 @@ function moveRedditEntriesToAllFeedEntries(entries: any) {
       articleSource: "C-OSSU (Reddit)",
       articlePublishDate: entry.published[0],
       articleTags: "",
+      articlePreview: entry.content[0]._,
     };
     allFeedEntries.push(formattedEntry);
   });
@@ -84,6 +87,7 @@ export const fetchFeed = async (feeds: { [key: string]: string }) => {
 
         if (key === "C-OSSU (Reddit)") moveRedditEntriesToAllFeedEntries(res.feed.entry);
         
+        console.log(res);
         return res;
       });
     } catch (error) {

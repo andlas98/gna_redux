@@ -9,7 +9,6 @@ const App = () => {
   const [ sortedFeedEntries, setSortedFeedEntries ] = useState<{ [key: string]: any }[]>([]);
   const [ excludedArticleSources, setExcludedArticleSources ] = useState<string[]>([]);
 
-  // TODO HIDE EXCLUDED SOURCES
   useEffect(() => {
     const fetchData = async () => {
       const data = await fetchFeed(feeds);
@@ -22,7 +21,7 @@ const App = () => {
   const handleArticleFilter = (articleSource: string, checked: boolean) => {
     const conditionToRemoveArticlesOfSpecificSource = !checked && (!excludedArticleSources.includes(articleSource))
     const conditionToAddArticlesOfSpecificSource = checked && (excludedArticleSources.includes(articleSource))
-    
+
     if (conditionToRemoveArticlesOfSpecificSource) setExcludedArticleSources([...excludedArticleSources, articleSource]);
     if (conditionToAddArticlesOfSpecificSource) setExcludedArticleSources(excludedArticleSources.filter(source => source !== articleSource)); 
     return;
@@ -57,6 +56,7 @@ const App = () => {
               articleAuthor={entry.articleAuthor}
               articleSource={entry.articleSource}
               articleTags={entry.articleTags}
+              articlePreview={entry.articlePreview}
               entry={entry} 
             />
           )) || <p>Loading...</p>}

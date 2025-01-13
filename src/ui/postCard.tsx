@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import { GamepadOutlined } from "@mui/icons-material";
 interface myComponentProps {
     className: string,
@@ -9,11 +9,24 @@ interface myComponentProps {
     articleSource: string, // Polygon, Destructroid, etc.
     articlePublishDate: string // date day was published,
     articleTags: Array<string>, // tags for the article (optional)
+    articlePreview: React.ReactNode, // preview of the article (optional)
     entry: { [key: string]: any },
-
 }
 
 export const PostCard:React.FC<myComponentProps> = (props) => {
+
+    const [showPreview, setShowPreview] = React.useState(false);
+
+    useEffect(() => {
+        if (showPreview) {
+            console.log("showing preview")
+        }
+    },[showPreview]);
+
+    const handleShowPreview = () =>{
+        setShowPreview(!showPreview);
+    }
+
     return (
     <div className={`${props.className || ""} w-full bg-dark-gray py-[2rem] px-[3rem]`}>
         <div className="article-card-header-container flex items-center">
@@ -29,13 +42,25 @@ export const PostCard:React.FC<myComponentProps> = (props) => {
                 <p className="text-white">From: <span className="italic">{props.articleSource}</span> ({props.articleAuthor})</p>
                 <p className="text-white">Date: {props.articlePublishDate}</p>
             </div>
-            <div className="article-tags-container">
-                {props.articleTags && props.articleTags.map((tag, index) => (
-                    <span key={index} className="bg-dark-mode-red p-[0.25rem] rounded-[0.25rem] italic text-[0.75rem]">{tag}</span>
-                ))}
-            </div>
-        </div>
 
+            <div className="article-tags-and-preview-container flex flex-col items-center">
+                <div className="article-tags-container ">
+                    {props.articleTags && props.articleTags.map((tag, index) => (
+                        <span key={index} className="bg-dark-mode-red p-[0.25rem] rounded-[0.25rem] italic text-[0.75rem] flex flex-row flex-wrap">{tag}</span>
+                    ))}
+                </div>
+                <div className="view-preview-btn">
+                    <button onClick={()=>handleShowPreview()}>Show Preview</button>
+                </div>
+            </div>
+
+        </div>
+        {showPreview && (
+            <div className="article-preview-container">
+                {props.articlePreview}
+                <button className="hide-preview-btn" onClick={() => {handleShowPreview()}}>Hide Preview</button>
+            </div>
+        )}
     </div>
     );
 }
