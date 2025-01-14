@@ -6,8 +6,6 @@ export var allFeedEntries : Array <{[key: string]: any}> = [];
 
 const PROXY_URL = 'https://api.cors.lol/?url=';
 
-  // TODO format article preview to display as formatted code 
-
 function moveSiliconeraEntriesToAllFeedEntries(entries: any) {
   entries.forEach((entry: any) => {
     const cleanedArticlePreview = DOMPurify.sanitize(entry.description[0]);
