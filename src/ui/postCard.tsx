@@ -33,7 +33,7 @@ export const PostCard:React.FC<myComponentProps> = (props) => {
             <div className="mr-[1rem]">
                 {props.articleHeaderImg !== "" ? <img src={props.articleHeaderImg} alt="article-card-header-img" /> : <GamepadOutlined />}
             </div>
-            <a className="text-white text-[1.5rem] text-dark-mode-red-text" target="_blank" rel="noreferrer" href={props.articleLink}>
+            <a className="text-[1.5rem] text-dark-mode-red-text text-underline" target="_blank" rel="noreferrer" href={props.articleLink}>
                 {props.articleHeadline}
             </a>
         </div>
@@ -56,8 +56,8 @@ export const PostCard:React.FC<myComponentProps> = (props) => {
 
         </div>
         {showPreview && (
-            <div className="article-preview-container">
-                {props.articlePreview}
+            <div className="bg-[#2E2E2E] py-[2rem]">
+                <div className="article-preview-container" dangerouslySetInnerHTML={{ __html: props.articlePreview as string }} />
                 <button className="hide-preview-btn" onClick={() => {handleShowPreview()}}>Hide Preview</button>
             </div>
         )}

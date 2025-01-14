@@ -1,5 +1,6 @@
 var parseString = require('xml2js').parseString;
-// var feeds = require('./feeds');
+var DOMPurify = require('dompurify');
+
 
 export var allFeedEntries : Array <{[key: string]: any}> = [];
 
@@ -9,6 +10,7 @@ const PROXY_URL = 'https://api.cors.lol/?url=';
 
 function moveSiliconeraEntriesToAllFeedEntries(entries: any) {
   entries.forEach((entry: any) => {
+    const cleanedArticlePreview = DOMPurify.sanitize(entry.description[0]);
     const formattedEntry = {
       articleHeaderImg: "",
       articleHeadline: entry.title[0],
@@ -17,7 +19,7 @@ function moveSiliconeraEntriesToAllFeedEntries(entries: any) {
       articleSource: "Siliconera",
       articlePublishDate: entry.pubDate[0],
       articleTags: entry.category,
-      articlePreview: entry.description[0],
+      articlePreview: cleanedArticlePreview,
     };
     allFeedEntries.push(formattedEntry);
   });
