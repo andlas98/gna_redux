@@ -1,9 +1,11 @@
 import { useEffect, useState } from 'react';
 import { fetchFeed, sortFeedEntriesByNewestToOldest } from './lib';
-import { ModeSwitch } from './ui/switch';
 import { PostCard } from './ui/postCard'; // Assuming PostCard is the component to render each entry
 import feeds from './feeds';
 import SiteHeader from './ui/siteHeader';
+import { Link } from '@mui/material';
+import { GitHub } from '@mui/icons-material';
+import SiteFooter from './ui/siteFooter';
 
 const App = () => {
   const [ sortedFeedEntries, setSortedFeedEntries ] = useState<{ [key: string]: any }[]>([]);
@@ -29,14 +31,18 @@ const App = () => {
 
   return (
     <div className="App h-full bg-black text-white pb-[3rem]">
-      <ModeSwitch />
+      <div className='w-full flex justify-end p-[0.5rem] '>
+        <Link target="_blank" href="https://github.com/andlas98/gna_redux">
+          <GitHub />
+        </Link>
+      </div>
       <div className="container m-auto">
         <SiteHeader />
-        <div className='flex m-auto items-center max-md:flex-col'> Showing articles from...
-          <div className="checkbox-container mt-4">
+        <div className='flex m-auto justify-center max-md:flex-col mt-[2rem]'> Showing articles from...
+          <div className="checkbox-container ml-[3rem] gap-x-[1rem] gap-y-[1rem] flex flex-wrap">
             {Object.keys(feeds).map((entry, index) => (
               <label>
-                <input type="checkbox" key={index} defaultChecked onClick={(e) => handleArticleFilter(entry, (e.target as HTMLInputElement).checked)} className={`checkbox-${entry}`} />
+                <input type="checkbox" key={index} defaultChecked onClick={(e) => handleArticleFilter(entry, (e.target as HTMLInputElement).checked)} className={`checkbox-${entry} mr-[0.5rem]`} />
                 {entry}
               </label>
             ))}
@@ -62,6 +68,7 @@ const App = () => {
           )) || <p>Loading...</p>}
         </div>
       </div>
+      <SiteFooter />
     </div>
   );
 };
