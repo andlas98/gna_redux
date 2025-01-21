@@ -33,6 +33,7 @@ function movePolygonEntriesToAllFeedEntries(entries: any) {
       articleTagsTemp.push(entryTerm);
       return articleTagsTemp
     })
+    const cleanedArticlePreview = DOMPurify.sanitize(entry.content[0]._);
     const formattedEntry = {
       articleHeaderImg: "",
       articleHeadline: entry.title[0]._,
@@ -41,7 +42,7 @@ function movePolygonEntriesToAllFeedEntries(entries: any) {
       articleSource: "Polygon",
       articlePublishDate: entry.published[0],
       articleTags: articleTagsTemp,
-      articlePreview: entry.content[0]._,
+      articlePreview: cleanedArticlePreview,
     };
     allFeedEntries.push(formattedEntry);
   });
@@ -49,6 +50,7 @@ function movePolygonEntriesToAllFeedEntries(entries: any) {
 
 function moveRedditEntriesToAllFeedEntries(entries: any) {
   entries.forEach((entry: any) => { 
+    const cleanedArticlePreview = DOMPurify.sanitize(entry.content[0]._)
     if (entry.title[0]?.includes("/u/C-OSSU on")) return;
     const formattedEntry = {
       articleHeaderImg: entry["media:thumbnail"][0].$.url || "",
@@ -58,7 +60,7 @@ function moveRedditEntriesToAllFeedEntries(entries: any) {
       articleSource: "C-OSSU (Reddit)",
       articlePublishDate: entry.published[0],
       articleTags: "",
-      articlePreview: entry.content[0]._,
+      articlePreview: cleanedArticlePreview,
     };
     allFeedEntries.push(formattedEntry);
   });
