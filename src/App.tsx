@@ -3,7 +3,7 @@ import { fetchFeed, sortFeedEntriesByNewestToOldest } from './lib';
 import { PostCard } from './ui/postCard'; // Assuming PostCard is the component to render each entry
 import feeds from './feeds';
 import SiteHeader from './ui/siteHeader';
-import { Link } from '@mui/material';
+import { Fade, Link } from '@mui/material';
 import { GitHub } from '@mui/icons-material';
 import SiteFooter from './ui/siteFooter';
 
@@ -49,6 +49,7 @@ const App = () => {
           </div>
         </div>
         {/* Render PostCards here using sortedFeedEntries */}
+
         <div className='feed-entries-container mt-[2rem] border-dark-mode-red border-[1px] border-[solid] shadow-md divide-y divide-white divide-dashed animate-ping-once'>
           {sortedFeedEntries.map((entry, index) => (
             entry.articleSource && !excludedArticleSources.includes(entry.articleSource) &&
