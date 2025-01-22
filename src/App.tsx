@@ -3,7 +3,7 @@ import { fetchFeed, sortFeedEntriesByNewestToOldest } from './lib';
 import { PostCard } from './ui/postCard'; // Assuming PostCard is the component to render each entry
 import feeds from './feeds';
 import SiteHeader from './ui/siteHeader';
-import { Fade, Link } from '@mui/material';
+import { Link } from '@mui/material';
 import { GitHub } from '@mui/icons-material';
 import SiteFooter from './ui/siteFooter';
 
