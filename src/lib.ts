@@ -9,6 +9,7 @@ const PROXY_URL = 'https://api.cors.lol/?url=';
 function moveSiliconeraEntriesToAllFeedEntries(entries: any) {
   entries.forEach((entry: any) => {
     const cleanedArticlePreview = DOMPurify.sanitize(entry.description[0]);
+    const cleanedArticleTags = entry.category.map((tag: any) => tag.replace(/&#039;/g, "'") + " ");
     const formattedEntry = {
       articleHeaderImg: "",
       articleHeadline: entry.title[0],
@@ -16,7 +17,7 @@ function moveSiliconeraEntriesToAllFeedEntries(entries: any) {
       articleAuthor: entry["dc:creator"][0],
       articleSource: "Siliconera",
       articlePublishDate: entry.pubDate[0],
-      articleTags: entry.category,
+      articleTags: cleanedArticleTags,
       articlePreview: cleanedArticlePreview,
     };
     allFeedEntries.push(formattedEntry);
@@ -28,10 +29,11 @@ function movePolygonEntriesToAllFeedEntries(entries: any) {
   entries.forEach((entry: any) => {
     const articleTagsTemp: string[] = [];
     entry.category.map((categoryObj: any) =>{
-      const entryTerm = categoryObj.$.term + " ";
+      const entryTerm = categoryObj.$.term.replace(/&#039;/g, "'") + " ";
       articleTagsTemp.push(entryTerm);
       return articleTagsTemp
     })
+    const cleanedArticlePreview = DOMPurify.sanitize(entry.content[0]._);
     const formattedEntry = {
       articleHeaderImg: "",
       articleHeadline: entry.title[0]._,
@@ -40,7 +42,7 @@ function movePolygonEntriesToAllFeedEntries(entries: any) {
       articleSource: "Polygon",
       articlePublishDate: entry.published[0],
       articleTags: articleTagsTemp,
-      articlePreview: entry.content[0]._,
+      articlePreview: cleanedArticlePreview,
     };
     allFeedEntries.push(formattedEntry);
   });
@@ -48,6 +50,7 @@ function movePolygonEntriesToAllFeedEntries(entries: any) {
 
 function moveRedditEntriesToAllFeedEntries(entries: any) {
   entries.forEach((entry: any) => { 
+    const cleanedArticlePreview = DOMPurify.sanitize(entry.content[0]._)
     if (entry.title[0]?.includes("/u/C-OSSU on")) return;
     const formattedEntry = {
       articleHeaderImg: entry["media:thumbnail"][0].$.url || "",
@@ -57,7 +60,7 @@ function moveRedditEntriesToAllFeedEntries(entries: any) {
       articleSource: "C-OSSU (Reddit)",
       articlePublishDate: entry.published[0],
       articleTags: "",
-      articlePreview: entry.content[0]._,
+      articlePreview: cleanedArticlePreview,
     };
     allFeedEntries.push(formattedEntry);
   });
