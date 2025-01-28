@@ -17,7 +17,7 @@ interface myComponentProps {
 export const PostCard:React.FC<myComponentProps> = (props) => {
 
     const maxVisibleArticleTags = 3;
-    const [showPreview, setShowPreview] = React.useState(false);
+    const [ showPreview, setShowPreview ] = React.useState(false);
 
     useEffect(() => {
         if (showPreview) {
@@ -26,12 +26,16 @@ export const PostCard:React.FC<myComponentProps> = (props) => {
     },[showPreview]);
 
     const handleShowPreview = () =>{
-        setShowPreview(!showPreview);
+        setShowPreview(true);
+    }
+
+    const handleHidePreview = () =>{
+        setShowPreview(false);
     }
 
     return (
     <div className={`${props.className || ""} w-full bg-dark-gray py-[2rem] px-[3rem]`}>
-        <div className="article-card-header-container flex items-center">
+        <div className="article-card-header-container lg:w-[70%] flex items-center mb-[1rem]">
             <div className="mr-[1rem]">
                 {props.articleHeaderImg !== "" ? <img src={props.articleHeaderImg} alt="article-card-header-img" /> : <GamepadOutlined />}
             </div>
@@ -45,12 +49,12 @@ export const PostCard:React.FC<myComponentProps> = (props) => {
                 <p className="text-white">Date: {props.articlePublishDate}</p>
             </div>
 
-            <div className="article-tags-and-preview-container flex flex-col items-center">
-                <div className="article-tags-container ">
+            <div className="article-tags-and-preview-container flex flex-col items-end">
+                <div className="article-tags-container">
                     {props.articleTags && props.articleTags.map((tag, index) => (
                         index < maxVisibleArticleTags &&
                         <span key={index} className={`bg-dark-mode-red p-[0.25rem] rounded-[0.25rem] italic text-[0.75rem] mr-1 ${props.articleTags?.length > maxVisibleArticleTags && ""}`}>{tag}</span>
-                    ))}
+                    )) }
                     {props.articleTags?.length > maxVisibleArticleTags && 
                     <Tooltip title={props.articleTags.slice(maxVisibleArticleTags).join(", ")} arrow>
                         <button>+{props.articleTags.length - maxVisibleArticleTags}</button>
@@ -59,15 +63,18 @@ export const PostCard:React.FC<myComponentProps> = (props) => {
                     }
                 </div>
                 <div className="view-preview-btn">
-                    <button onClick={()=>handleShowPreview()}>Show Preview</button>
+                    
+                    { !showPreview && <button className="dark-mode-button" onClick={()=>handleShowPreview()}>Show Preview</button> }
+                    { showPreview && <button className="dark-mode-button" onClick={()=>handleHidePreview()}>Hide Preview</button>}
+                    {/* <button className="dark-mode-button" onClick={()=>handleShowPreview()}>Show Preview</button> */}
                 </div>
             </div>
 
         </div>
         {showPreview && (
-            <div className="bg-[#2E2E2E] py-[2rem]">
+            <div className="fade bg-[#2E2E2E] p-[2rem] mt-[1rem] rounded-[10px]">
                 <div className="article-preview-container" dangerouslySetInnerHTML={{ __html: props.articlePreview as string }} />
-                <button className="hide-preview-btn" onClick={() => {handleShowPreview()}}>Hide Preview</button>
+                <button className="hide-preview-btn dark-mode-button" onClick={() => {handleHidePreview()}}>Hide Preview</button>
             </div>
         )}
     </div>
