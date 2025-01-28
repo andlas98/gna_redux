@@ -17,7 +17,7 @@ interface myComponentProps {
 export const PostCard:React.FC<myComponentProps> = (props) => {
 
     const maxVisibleArticleTags = 3;
-    const [showPreview, setShowPreview] = React.useState(false);
+    const [ showPreview, setShowPreview ] = React.useState(false);
 
     useEffect(() => {
         if (showPreview) {
@@ -26,7 +26,11 @@ export const PostCard:React.FC<myComponentProps> = (props) => {
     },[showPreview]);
 
     const handleShowPreview = () =>{
-        setShowPreview(!showPreview);
+        setShowPreview(true);
+    }
+
+    const handleHidePreview = () =>{
+        setShowPreview(false);
     }
 
     return (
@@ -59,15 +63,18 @@ export const PostCard:React.FC<myComponentProps> = (props) => {
                     }
                 </div>
                 <div className="view-preview-btn">
-                    <button className="dark-mode-button bg-dark-mode-red-text text-black hover:bg-white hover:text-dark-mode-red-text py-1 px-2 rounded-[10px] mt-[1rem]" onClick={()=>handleShowPreview()}>Show Preview</button>
+                    
+                    { !showPreview && <button className="dark-mode-button" onClick={()=>handleShowPreview()}>Show Preview</button> }
+                    { showPreview && <button className="dark-mode-button" onClick={()=>handleHidePreview()}>Hide Preview</button>}
+                    {/* <button className="dark-mode-button" onClick={()=>handleShowPreview()}>Show Preview</button> */}
                 </div>
             </div>
 
         </div>
         {showPreview && (
-            <div className="bg-[#2E2E2E] py-[2rem]">
+            <div className="fade bg-[#2E2E2E] p-[2rem] mt-[1rem] rounded-[10px]">
                 <div className="article-preview-container" dangerouslySetInnerHTML={{ __html: props.articlePreview as string }} />
-                <button className="hide-preview-btn" onClick={() => {handleShowPreview()}}>Hide Preview</button>
+                <button className="hide-preview-btn dark-mode-button" onClick={() => {handleHidePreview()}}>Hide Preview</button>
             </div>
         )}
     </div>
