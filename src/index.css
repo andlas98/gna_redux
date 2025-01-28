@@ -2,9 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer components{
-  .dark-mode-button{
-    @apply bg-dark-mode-red-text text-black hover:bg-white hover:text-dark-mode-red-text py-1 px-2 rounded-[10px] mt-[1rem];
+@layer components {
+  .dark-mode-button {
+    @apply bg-dark-mode-red-text text-black hover:bg-white hover:text-black py-1 px-2 rounded-[10px] mt-[1rem];
   }
 }
 
@@ -22,17 +22,29 @@ code {
     monospace;
 }
 
+.article-preview-container *:not(button) {
+  font-family: "Arial", Helvetica;
+}
 
-.article-preview-container img{
+.article-preview-container img {
   width: 70%;
 }
 
-.article-preview-container h1, .article-preview-container h2, .article-preview-container h3, .article-preview-container h4, .article-preview-container h5, .article-preview-container h6{
+.article-preview-container a {
+  text-decoration: underline;
+}
+
+.article-preview-container blockquote {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.article-preview-container h1, .article-preview-container h2, .article-preview-container h3, .article-preview-container h4, .article-preview-container h5, .article-preview-container h6 {
   font-size: revert;
   margin-bottom: 1rem;
 }
 
-.article-preview-container ul, .article-preview-container ol{
+.article-preview-container ul, .article-preview-container ol {
   margin-left: 1rem;
 }
 
@@ -40,6 +52,6 @@ code {
   margin-bottom: 0.5rem;
 }
 
-.article-preview-container p, .article-preview-container ul, .article-preview-container ol {
+.article-preview-container p, .article-preview-container ul, .article-preview-container ol, .article-preview-container hr {
   margin-bottom: 1rem;
 }

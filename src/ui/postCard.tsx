@@ -14,7 +14,7 @@ interface myComponentProps {
     entry: { [key: string]: any },
 }
 
-export const PostCard:React.FC<myComponentProps> = (props) => {
+const PostCard:React.FC<myComponentProps> = (props) => {
 
     const maxVisibleArticleTags = 3;
     const [ showPreview, setShowPreview ] = React.useState(false);
@@ -64,19 +64,20 @@ export const PostCard:React.FC<myComponentProps> = (props) => {
                 </div>
                 <div className="view-preview-btn">
                     
-                    { !showPreview && <button className="dark-mode-button" onClick={()=>handleShowPreview()}>Show Preview</button> }
-                    { showPreview && <button className="dark-mode-button" onClick={()=>handleHidePreview()}>Hide Preview</button>}
-                    {/* <button className="dark-mode-button" onClick={()=>handleShowPreview()}>Show Preview</button> */}
+                    { !showPreview && <button className="dark-mode-button" onClick={() => handleShowPreview()}>Show Preview</button> }
+                    { showPreview && <button className="dark-mode-button" onClick={() => handleHidePreview()}>Hide Preview</button>}
                 </div>
             </div>
 
         </div>
         {showPreview && (
-            <div className="fade bg-[#2E2E2E] p-[2rem] mt-[1rem] rounded-[10px]">
+            <div className={`article-preview-container bg-[#2E2E2E] p-[2rem] mt-[1rem] rounded-[10px] ${showPreview ? 'animate-fade-in' : ''}`}>
                 <div className="article-preview-container" dangerouslySetInnerHTML={{ __html: props.articlePreview as string }} />
                 <button className="hide-preview-btn dark-mode-button" onClick={() => {handleHidePreview()}}>Hide Preview</button>
             </div>
         )}
     </div>
     );
-}
+};
+
+export default PostCard;
