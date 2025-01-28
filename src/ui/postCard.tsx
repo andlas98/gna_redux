@@ -44,12 +44,12 @@ const PostCard:React.FC<myComponentProps> = (props) => {
             </a>
         </div>
         <div className="flex justify-between max-md:flex-col max-md:items-center">
-            <div className="article-source-and-publish-date-container flex flex-col">
+            <div className="article-source-and-publish-date-container flex flex-col max-md:mb-[1rem]">
                 <p className="text-white">From: <span className="italic">{props.articleSource}</span> ({props.articleAuthor})</p>
                 <p className="text-white">Date: {props.articlePublishDate}</p>
             </div>
 
-            <div className="article-tags-and-preview-container flex flex-col items-end">
+            <div className="article-tags-and-preview-container flex flex-col items-end max-md:items-center">
                 <div className="article-tags-container">
                     {props.articleTags && props.articleTags.map((tag, index) => (
                         index < maxVisibleArticleTags &&
@@ -63,7 +63,6 @@ const PostCard:React.FC<myComponentProps> = (props) => {
                     }
                 </div>
                 <div className="view-preview-btn">
-                    
                     { !showPreview && <button className="dark-mode-button" onClick={() => handleShowPreview()}>Show Preview</button> }
                     { showPreview && <button className="dark-mode-button" onClick={() => handleHidePreview()}>Hide Preview</button>}
                 </div>

@@ -32,7 +32,7 @@ const App = () => {
   };
 
   return (
-    <div className="App h-full bg-black text-white pb-[3rem]">
+    <div className="App h-full bg-black text-white">
       <div className='w-full flex justify-end p-[0.5rem] '>
         <Link target="_blank" href="https://github.com/andlas98/gna_redux">
           <GitHub />
@@ -52,6 +52,7 @@ const App = () => {
         </div>
         {/* Render PostCards here using sortedFeedEntries */}
 
+        {isFeedLoaded ? 
         <div className={`feed-entries-container mt-[2rem] border-dark-mode-red border-[1px] border-[solid] shadow-md divide-y divide-white divide-dashed ${isFeedLoaded ? 'animate-fade-in' : 'opacity-0'}`}>
           {sortedFeedEntries.map((entry, index) => (
             entry.articleSource && !excludedArticleSources.includes(entry.articleSource) &&
@@ -68,8 +69,8 @@ const App = () => {
               articlePreview={entry.articlePreview}
               entry={entry} 
             />
-          )) || <p>Loading...</p>}
-        </div>
+          ))}
+        </div> : <div className="text-center h-[100vh]">Loading...</div>}
       </div>
       <SiteFooter />
     </div>

@@ -55,3 +55,7 @@ code {
 .article-preview-container p, .article-preview-container ul, .article-preview-container ol, .article-preview-container hr {
   margin-bottom: 1rem;
 }
+
+.developer-links > a {
+  margin-right: 1rem;
+}
