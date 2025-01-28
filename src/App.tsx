@@ -10,7 +10,7 @@ import SiteFooter from './ui/siteFooter';
 const App = () => {
   const [ sortedFeedEntries, setSortedFeedEntries ] = useState<{ [key: string]: any }[]>([]);
   const [ excludedArticleSources, setExcludedArticleSources ] = useState<string[]>([]);
-  const [isFeedLoaded, setIsFeedLoaded] = useState(false);
+  const [ isFeedLoaded, setIsFeedLoaded ] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -50,8 +50,8 @@ const App = () => {
             ))}
           </div>
         </div>
-        {/* Render PostCards here using sortedFeedEntries */}
 
+        {isFeedLoaded && excludedArticleSources.length === Object.keys(feeds).length && <div className="text-center pt-[3rem] h-[100vh]">No articles to show</div>}
         {isFeedLoaded ? 
         <div className={`feed-entries-container mt-[2rem] border-dark-mode-red border-[1px] border-[solid] shadow-md divide-y divide-white divide-dashed ${isFeedLoaded ? 'animate-fade-in' : 'opacity-0'}`}>
           {sortedFeedEntries.map((entry, index) => (
@@ -70,7 +70,7 @@ const App = () => {
               entry={entry} 
             />
           ))}
-        </div> : <div className="text-center h-[100vh]">Loading...</div>}
+        </div> : <div className="text-center pt-[3rem] h-[100vh]">Loading...</div>}
       </div>
       <SiteFooter />
     </div>
