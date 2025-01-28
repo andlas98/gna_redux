@@ -10,12 +10,14 @@ import SiteFooter from './ui/siteFooter';
 const App = () => {
   const [ sortedFeedEntries, setSortedFeedEntries ] = useState<{ [key: string]: any }[]>([]);
   const [ excludedArticleSources, setExcludedArticleSources ] = useState<string[]>([]);
+  const [isFeedLoaded, setIsFeedLoaded] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
       const data = await fetchFeed(feeds);
       const sortedData = sortFeedEntriesByNewestToOldest([...data]);
       setSortedFeedEntries(sortedData);
+      setIsFeedLoaded(true); // Set feed loaded to true when data is fetched and sorted
     };
     fetchData();
   }, [excludedArticleSources]);
@@ -50,7 +52,7 @@ const App = () => {
         </div>
         {/* Render PostCards here using sortedFeedEntries */}
 
-        <div className='feed-entries-container mt-[2rem] border-dark-mode-red border-[1px] border-[solid] shadow-md divide-y divide-white divide-dashed animate-ping-once'>
+        <div className={`feed-entries-container mt-[2rem] border-dark-mode-red border-[1px] border-[solid] shadow-md divide-y divide-white divide-dashed ${isFeedLoaded ? 'animate-fade-in' : 'opacity-0'}`}>
           {sortedFeedEntries.map((entry, index) => (
             entry.articleSource && !excludedArticleSources.includes(entry.articleSource) &&
             <PostCard 
