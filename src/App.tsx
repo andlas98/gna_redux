@@ -10,7 +10,7 @@ import SiteFooter from './ui/siteFooter';
 const App = () => {
   const [ sortedFeedEntries, setSortedFeedEntries ] = useState<{ [key: string]: any }[]>([]);
   const [ excludedArticleSources, setExcludedArticleSources ] = useState<string[]>([]);
-  const [isFeedLoaded, setIsFeedLoaded] = useState(false);
+  const [ isFeedLoaded, setIsFeedLoaded ] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -32,7 +32,7 @@ const App = () => {
   };
 
   return (
-    <div className="App h-full bg-black text-white pb-[3rem]">
+    <div className="App h-full bg-black text-white">
       <div className='w-full flex justify-end p-[0.5rem] '>
         <Link target="_blank" href="https://github.com/andlas98/gna_redux">
           <GitHub />
@@ -50,8 +50,9 @@ const App = () => {
             ))}
           </div>
         </div>
-        {/* Render PostCards here using sortedFeedEntries */}
 
+        {isFeedLoaded && excludedArticleSources.length === Object.keys(feeds).length && <div className="text-center pt-[3rem] h-[100vh]">No articles to show</div>}
+        {isFeedLoaded ? 
         <div className={`feed-entries-container mt-[2rem] border-dark-mode-red border-[1px] border-[solid] shadow-md divide-y divide-white divide-dashed ${isFeedLoaded ? 'animate-fade-in' : 'opacity-0'}`}>
           {sortedFeedEntries.map((entry, index) => (
             entry.articleSource && !excludedArticleSources.includes(entry.articleSource) &&
@@ -68,8 +69,8 @@ const App = () => {
               articlePreview={entry.articlePreview}
               entry={entry} 
             />
-          )) || <p>Loading...</p>}
-        </div>
+          ))}
+        </div> : <div className="text-center pt-[3rem] h-[100vh]">Loading...</div>}
       </div>
       <SiteFooter />
     </div>
