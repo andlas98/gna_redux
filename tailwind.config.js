@@ -13,6 +13,7 @@ module.exports = {
       },
       animation: {
         'ping-once': 'fade 4s linear',
+        'fade-in': 'fade 1s ease-in-out',
       },
       colors: {
         "light-gray": "#E0E0E0",
@@ -26,4 +27,3 @@ module.exports = {
   },
   plugins: [],
 }
-

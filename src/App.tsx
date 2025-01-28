@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { fetchFeed, sortFeedEntriesByNewestToOldest } from './lib';
-import { PostCard } from './ui/postCard'; // Assuming PostCard is the component to render each entry
+import PostCard from './ui/postCard'; // Assuming PostCard is the component to render each entry
 import feeds from './feeds';
 import SiteHeader from './ui/siteHeader';
 import { Link } from '@mui/material';
