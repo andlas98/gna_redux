@@ -12,7 +12,7 @@ Aaron's post: https://www.linkedin.com/posts/activity-6547520966463901696-s3-D
 
 *UPDATE*: I've since revisited this project to recreate it in React and TypeScript.
 
-**Basic Functions**
+## Basic Functions
 * Languages/Libraries Used: React, Typescript, Tailwind
 * Provide links to various articles related to gaming (a la HackerNews), but personally curated
 * Grab articles from multiple popular VG sites (Siliconera, Polygon, etc.)
