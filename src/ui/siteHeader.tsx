@@ -10,7 +10,7 @@ export default function SiteHeader(){
                 <span className="text-dark-mode-red">A</span>ggregator
             </h1>
             <p className="text-light-gray/60 text-center text-sm mt-3">
-                Your source for the latest gaming news across multiple platforms
+                Dru's source for the latest gaming news across multiple platforms :)
             </p>
             <div className="flex items-center justify-center gap-3 mt-4">
                 <div className="h-px flex-1 bg-gradient-to-r from-transparent via-dark-mode-red to-transparent opacity-30"></div>

@@ -6,7 +6,7 @@ export default function SiteFooter(){
         <footer className="siteFooter border-t border-dark-mode-red/30 py-8 px-4 mt-12">
             <div className="container max-w-7xl mx-auto">
                 <div className="text-center mb-4">
-                    <p className="text-light-gray text-sm font-medium">Designed and Developed by Andrew Ohakam</p>
+                    <p className="text-light-gray/40 text-xs text-center mt-4">Designed and Developed by Andrew Ohakam</p>
                 </div>
                 <div className="developer-links flex justify-center gap-4">
                     <Link 
@@ -34,7 +34,6 @@ export default function SiteFooter(){
                         <LinkedIn className="w-5 h-5" />
                     </Link>
                 </div>
-                <p className="text-light-gray/40 text-xs text-center mt-4">© 2026 Gaming News Aggregator. All rights reserved.</p>
             </div>
         </footer>
     )
