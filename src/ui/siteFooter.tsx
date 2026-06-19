@@ -3,13 +3,39 @@ import { Link } from "@mui/material"
 
 export default function SiteFooter(){
     return (
-        <div className="siteFooter py-[2rem] text-center">
-            <p>Designed and Developed by Andrew Ohakam</p>
-            <div className="developer-links mt-1">
-                <Link className="!color-unset" href="https://andrewohakam.netlify.app/" target="_blank"><Language /></Link>
-                <Link href="https://github.com/andlas98" target="_blank"><GitHub /></Link>
-                <Link href="https://www.linkedin.com/in/andrew-ohakam/" target="_blank"><LinkedIn /></Link>
+        <footer className="siteFooter border-t border-dark-mode-red/30 py-8 px-4 mt-12">
+            <div className="container max-w-7xl mx-auto">
+                <div className="text-center mb-4">
+                    <p className="text-light-gray text-sm font-medium">Designed and Developed by Andrew Ohakam</p>
+                </div>
+                <div className="developer-links flex justify-center gap-4">
+                    <Link 
+                        href="https://andrewohakam.netlify.app/" 
+                        target="_blank"
+                        className="text-light-gray/70 hover:text-dark-mode-red-text transition-colors duration-200"
+                        sx={{ textDecoration: 'none', '&:hover': { opacity: 0.8 } }}
+                    >
+                        <Language className="w-5 h-5" />
+                    </Link>
+                    <Link 
+                        href="https://github.com/andlas98" 
+                        target="_blank"
+                        className="text-light-gray/70 hover:text-dark-mode-red-text transition-colors duration-200"
+                        sx={{ textDecoration: 'none', '&:hover': { opacity: 0.8 } }}
+                    >
+                        <GitHub className="w-5 h-5" />
+                    </Link>
+                    <Link 
+                        href="https://www.linkedin.com/in/andrew-ohakam/" 
+                        target="_blank"
+                        className="text-light-gray/70 hover:text-dark-mode-red-text transition-colors duration-200"
+                        sx={{ textDecoration: 'none', '&:hover': { opacity: 0.8 } }}
+                    >
+                        <LinkedIn className="w-5 h-5" />
+                    </Link>
+                </div>
+                <p className="text-light-gray/40 text-xs text-center mt-4">© 2026 Gaming News Aggregator. All rights reserved.</p>
             </div>
-        </div>
+        </footer>
     )
 }

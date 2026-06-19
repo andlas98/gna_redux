@@ -1,5 +1,5 @@
 const feeds = {
-    "Polygon": "https://www.polygon.com/rss/index.xml",
+    "Polygon": "https://www.polygon.com/feed/news/",
     "Siliconera": "https://www.siliconera.com/feed/",
     "C-OSSU (Reddit)": "https://www.reddit.com/user/C-OSSU/.rss"
 }

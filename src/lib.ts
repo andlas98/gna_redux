@@ -4,7 +4,7 @@ var DOMPurify = require('dompurify');
 
 export var allFeedEntries : Array <{[key: string]: any}> = [];
 
-const PROXY_URL = 'https://api.cors.lol/?url=';
+const PROXY_URL = 'https://corsproxy.io/?';
 
 function moveSiliconeraEntriesToAllFeedEntries(entries: any) {
   entries.forEach((entry: any) => {
